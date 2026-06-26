@@ -2,7 +2,7 @@
   "name": "watermark-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://[tu-usuario].github.io/watermark-app",
+  "homepage": "https://mundocancel.github.io/watermark-app",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
