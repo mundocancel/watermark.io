@@ -2,8 +2,14 @@ name: Deploy Jekyll with GitHub Pages dependencies pre-staged
 
 on:
   push:
-    branches: ["main"] # Cambia 'main' por el nombre de tu rama principal si es diferente
-
+    branches: ["main"]
+    paths:
+      - '**.html'
+      - '**.md'
+      - '**.css'
+      - '**.js'
+      - '_config.yml'
+      - 'Gemfile*'
   # Permite ejecutar este flujo de trabajo manualmente desde la pestaña Actions
   workflow_dispatch:
 
@@ -37,6 +43,16 @@ jobs:
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Build with Jekyll
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
 
   # Trabajo de despliegue (deploy)
   deploy:
